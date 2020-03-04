@@ -7,7 +7,9 @@ Examples:
 - Change Assignee of Results
 - Change Severity of Results
 - Change State of Results
+- Get Customized Queries
 - Get Last Scan Results
+- Get List of Inactive Users
 
 # License
 
