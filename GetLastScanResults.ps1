@@ -111,6 +111,16 @@ function getQueriesForScan($proxy, $session, $scanId){
         exit 5
     }
 }
+######## Get Result Path ########
+function getResultPath($proxy, $session, $scanId, $pathId){
+    $res = $proxy.GetResultPath($session, $scanId, $pathId)
+    if($res.IsSuccesfull){
+        return $res.Path
+    } else {
+        Write-Host "Failed to get Queries for Scan ${scanId}: " $res.ErrorMessage
+        exit 5
+    }
+}
 ######## Get Query Details By Query ID ########
 function getQueryDetailsByQueryId($queries, $queryId){
     foreach($query in $queries){
@@ -162,5 +172,4 @@ for($i=0; $i -lt $totalResults; $i++){
     $commentArray = getComments $proxy $session $lastScanId $pathId
     $results[$i].Comment = $commentArray
 }
-
 Write-Host ($results | ConvertTo-Json -Depth 99)
