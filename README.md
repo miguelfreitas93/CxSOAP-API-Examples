@@ -1,5 +1,5 @@
 # CxSOAP-API-Examples
-Checkmarx SOAP API Examples
+Checkmarx SOAP API Examples (8.X versions)
 
 Examples:
 
