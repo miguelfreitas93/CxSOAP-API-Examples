@@ -3,14 +3,14 @@ Checkmarx SOAP API Examples (8.X versions)
 
 Examples:
 
-- Powershell (PS1):
-    - Add Comment to Results - Powershell
-    - Change Assignee of Results - Powershell
-    - Change Severity of Results - Powershell
-    - Change State of Results - Powershell
-    - Get Customized Queries - Powershell
-    - Get Last Scan Results - Powershell
-    - Get List of Inactive Users - Powershell
+- Powershell (Powershell/README.md):
+    - Add Comment to Results
+    - Change Assignee of Results
+    - Change Severity of Results
+    - Change State of Results
+    - Get Customized Queries
+    - Get Last Scan Results
+    - Get List of Inactive Users
 - Postman Collection (Postman/README.md):
     - Login
     - Get All Teams
