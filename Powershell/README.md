@@ -3,12 +3,25 @@
 This folder contains the following Checkmarx SOAP API examples:
 
 - Add Comment to Results
+- Add New Application User Company Manager to Team
+- Add New Application User Reviewer with Severity Permissions to Team
+- Add New Application User Reviewer to Team
+- Add New Application User Scanner with Delete and Not Exploitable Permissions to Team
+- Add New Application User Scanner with Delete Permissions to Team
+- Add New Application User Scanner with Not Exploitable Permissions to Team
+- Add New Application User Scanner to Team
+- Add New Application User Server Manager to Team
+- Add New Application User SP Manager to Team
 - Change Assignee of Results
 - Change Severity of Results
 - Change State of Results
+- Get All Teams
+- Get All Users
+- Get Branch Projects
 - Get Customized Queries
 - Get Last Scan Results
 - Get List of Inactive Users
+- Login
 
 # Security
 

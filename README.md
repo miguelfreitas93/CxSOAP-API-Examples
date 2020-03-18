@@ -5,12 +5,26 @@ Examples:
 
 - Powershell (Powershell/README.md):
     - Add Comment to Results
+    - Add New Application User Company Manager to Team
+    - Add New Application User Reviewer with Severity Permissions to Team
+    - Add New Application User Reviewer to Team
+    - Add New Application User Scanner with Delete and Not Exploitable Permissions to Team
+    - Add New Application User Scanner with Delete Permissions to Team
+    - Add New Application User Scanner with Not Exploitable Permissions to Team
+    - Add New Application User Scanner to Team
+    - Add New Application User Server Manager to Team
+    - Add New Application User SP Manager to Team
     - Change Assignee of Results
     - Change Severity of Results
     - Change State of Results
+    - Delete User
+    - Get All Teams
+    - Get All Users
     - Get Customized Queries
+    - Get Branch Projects
     - Get Last Scan Results
     - Get List of Inactive Users
+    - Login
 - Postman Collection (Postman/README.md):
     - Login
     - Get All Teams
