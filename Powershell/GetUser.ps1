@@ -6,7 +6,7 @@ $domain = "http://localhost"
 $username = $credentials.UserName
 $password = $credentials.Password
 
-$userEmailToDelete = "reviewer.none@cx"
+$userEmailToGet = "reviewer.none@cx"
 
 ######## Get Proxy ########
 function getProxy($domain){
@@ -49,11 +49,11 @@ function getUserIdByEmail($proxy, $sessionId, $email){
     Write-Error "User ${email} was not found"
     exit 1
 }
-######## Delete User By ID ########
-function deleteUserById($proxy, $sessionId, $userId){
-    $res = $proxy.DeleteUser($sessionId, $userId)
+######## Get User By ID ########
+function getUser($proxy, $sessionId, $userId){
+    $res = $proxy.GetUserById($sessionId, $userId)
     if($res.IsSuccesfull){
-        return $res.IsSuccesfull
+        return $res.UserData
     } else{
         Write-Host "Failed to Get Users : " $res.ErrorMessage
         exit 1
@@ -62,7 +62,6 @@ function deleteUserById($proxy, $sessionId, $userId){
 $proxy = getProxy $domain
 $sessionId = login $proxy $username $password
 
-$userIdToDelete = getUserIdByEmail $proxy $sessionId $userEmailToDelete
-$userDeleted = deleteUserById $proxy $sessionId $userIdToDelete
-
-Write-Host "User ${userEmailToDelete} deleted with success"
+$userIdToGet = getUserIdByEmail $proxy $sessionId $userEmailToGet
+$user = getUser $proxy $sessionId $userIdToGet
+($user | ConvertTo-Json -Depth 99)
