@@ -24,9 +24,12 @@ Examples:
     - Change Severity of Results
     - Change State of Results
     - Create Empty Preset
+    - Create Empty Preset Parameterized
     - Delete Preset
+    - Delete Preset Parameterized
     - Delete User
     - Duplicate Preset
+    - Duplicate Preset Parameterized
     - Get All Teams
     - Get All Users
     - Get Branch Projects
@@ -37,6 +40,7 @@ Examples:
     - Get User
     - Login
     - Rename Preset
+    - Rename Preset Parameterized
 
 - Postman Collection (Postman/README.md):
 
