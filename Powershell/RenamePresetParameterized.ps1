@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Powershell Script to Delete Preset in Checkmarx
+    Powershell Script to Rename Preset in Checkmarx
 .DESCRIPTION
-    Powershell Script to Delete Preset in Checkmarx given a specific name
+    Powershell Script to Rename Preset in Checkmarx given a specific name for the Old and New names of the Preset
 .PARAMETER Path
     The path to the .
 .PARAMETER LiteralPath

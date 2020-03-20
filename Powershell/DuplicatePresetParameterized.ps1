@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Powershell Script to Delete Preset in Checkmarx
+    Powershell Script to Duplicate Preset in Checkmarx
 .DESCRIPTION
-    Powershell Script to Delete Preset in Checkmarx given a specific name
+    Powershell Script to Duplicate Preset in Checkmarx given a specific name for the Source and Destination presets
 .PARAMETER Path
     The path to the .
 .PARAMETER LiteralPath
