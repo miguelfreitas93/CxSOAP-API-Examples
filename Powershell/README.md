@@ -33,6 +33,7 @@ This folder contains the following Checkmarx SOAP API examples:
 - Get Presets
 - Get User
 - Login
+- Rename Preset
 
 # Security
 

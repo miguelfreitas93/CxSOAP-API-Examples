@@ -36,6 +36,7 @@ Examples:
     - Get Presets
     - Get User
     - Login
+    - Rename Preset
 
 - Postman Collection (Postman/README.md):
 
