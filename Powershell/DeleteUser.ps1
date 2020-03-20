@@ -55,7 +55,7 @@ function deleteUserById($proxy, $sessionId, $userId){
     if($res.IsSuccesfull){
         return $res.IsSuccesfull
     } else{
-        Write-Host "Failed to Get Users : " $res.ErrorMessage
+        Write-Host "Failed to Delete User ${userId} : " $res.ErrorMessage
         exit 1
     }
 }

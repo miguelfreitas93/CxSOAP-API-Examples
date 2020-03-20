@@ -20,13 +20,17 @@ This folder contains the following Checkmarx SOAP API examples:
 - Change Assignee of Results
 - Change Severity of Results
 - Change State of Results
+- Create Empty Preset
+- Delete Preset
 - Delete User
+- Duplicate Preset
 - Get All Teams
 - Get All Users
 - Get Branch Projects
 - Get Customized Queries
 - Get Last Scan Results
 - Get List of Inactive Users
+- Get Presets
 - Get User
 - Login
 

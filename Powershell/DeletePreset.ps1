@@ -5,8 +5,7 @@ $credentials = Get-StoredCredential -Target "CxPortal" –AsCredentialObject
 $domain = "http://localhost"
 $username = $credentials.UserName
 $password = $credentials.Password
-
-$userEmailToGet = "reviewer.none@cx"
+$presetName = "Test Preset"
 
 ######## Get Proxy ########
 function getProxy($domain){
@@ -19,8 +18,7 @@ function login($proxy, $user, $pass){
     $credentials = new-object ("$proxyType.Credentials")
     $credentials.User = $user
     $credentials.Pass = $pass
-    $res = $proxy.Login($credentials, 1033) 
-    
+    $res = $proxy.Login($credentials, 1033)
     if($res.IsSuccesfull){
         return $res.SessionId
     } else{
@@ -28,40 +26,38 @@ function login($proxy, $user, $pass){
         exit 1
     }
 }
-######## Get All Users ########
-function getUsers($proxy, $sessionId){
-    $res = $proxy.GetAllUsers($sessionId)
+######## Get Presets ########
+function getPresets($proxy, $sessionId){
+    $res = $proxy.GetPresetList($sessionId)
     if($res.IsSuccesfull){
-        return $res.UserDataList
+        return $res.PresetList
     } else{
-        Write-Host "Failed to Get Users : " $res.ErrorMessage
+        Write-Host "Failed to Get Presets : " $res.ErrorMessage
+        exit 1
+    }
+}
+######## Delete Preset by ID ########
+function deletePreset($proxy, $sessionId, $presetId){
+    $res = $proxy.DeletePreset($sessionId, $presetId)
+    if($res.IsSuccesfull){
+        return $res
+    } else{
+        Write-Host "Failed to Delete Preset ${presetId} : " $res.ErrorMessage
         exit 1
     }
 }
 
-function getUserIdByEmail($proxy, $sessionId, $email){
-    $users = getUsers $proxy $sessionId
-    foreach($user in $users){
-        if($user.Email -eq $email){
-            return $user.ID
-        }
-    }
-    Write-Error "User ${email} was not found"
-    exit 1
-}
-######## Get User By ID ########
-function getUser($proxy, $sessionId, $userId){
-    $res = $proxy.GetUserById($sessionId, $userId)
-    if($res.IsSuccesfull){
-        return $res.UserData
-    } else{
-        Write-Host "Failed to Get User ${userId} : " $res.ErrorMessage
-        exit 1
-    }
-}
 $proxy = getProxy $domain
 $sessionId = login $proxy $username $password
+$presets = getPresets $proxy $sessionId
 
-$userIdToGet = getUserIdByEmail $proxy $sessionId $userEmailToGet
-$user = getUser $proxy $sessionId $userIdToGet
-($user | ConvertTo-Json -Depth 99)
+
+foreach($preset in $presets){
+    $presetId = $preset.ID
+    $pName = $preset.PresetName
+    if($pName -eq $presetName){
+        $presetDeleted = deletePreset $proxy $sessionId $presetId
+        Write-Host "Preset ${presetName} deleted with success !"
+        break
+    }
+}

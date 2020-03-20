@@ -32,7 +32,7 @@ function getTeams($proxy, $sessionId){
     if($res.IsSuccesfull){
         return $res.TeamDataList
     } else{
-        Write-Host "Failed to Get Users : " $res.ErrorMessage
+        Write-Host "Failed to Get Teams : " $res.ErrorMessage
         exit 1
     }
 }
