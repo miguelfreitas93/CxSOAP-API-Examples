@@ -49,6 +49,11 @@ function getTeams($proxy, $sessionId){
         exit 1
     }
 }
+######## Get Team Full Path ########
+function getTeamFullPath($proxy, $sessionId, $teamId){
+    $res = $proxy.GetTeamFullPaths($sessionId, $teamId, $teamId)
+    return $res.sourceTeamFullPath
+}
 function getTeamId($proxy, $sessionId, $teamPath){
     $teams = getTeams $proxy $sessionId
     foreach($team in $teams){
