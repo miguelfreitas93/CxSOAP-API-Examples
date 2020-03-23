@@ -17,31 +17,27 @@ Param(
     [Parameter(
         Position = 0,
         Mandatory = $true,
-        HelpMessage = "Checkmarx URL"
-    )][string[]] $domain,
+        HelpMessage = "Checkmarx URL (eg. http://localhost) - Required"
+    )][string] $domain,
     # Checkmarx Username (eg. admin@cx) - Required
     [Parameter(
         Position = 1,
         Mandatory = $true,
         HelpMessage = "Checkmarx Username (eg. admin@cx) - Required"
-    )][string] $sqlServerName,
-    # SQL Database - Required
+    )][string] $username,
+    # Checkmarx Password - Required
     [Parameter(
         Position = 2,
         Mandatory = $true,
-        HelpMessage = "SQL Database"
-    )][string] $sqlDatabase
+        HelpMessage = "Checkmarx Password - Required"
+    )][string] $password,
+    # Preset Name - Required
+    [Parameter(
+        Position = 3,
+        Mandatory = $true,
+        HelpMessage = "Preset Name - Required"
+    )][string] $presetName
 )
-
-######## Checkmarx Config ########
-#Install-Module -Name "CredentialManager"
-$credentials = Get-StoredCredential -Target "CxPortal" –AsCredentialObject
- 
-$domain = "http://localhost"
-$username = $credentials.UserName
-$password = $credentials.Password
-$presetName = "Test Preset"
-
 
 ######## Get Proxy ########
 function getProxy($domain){
