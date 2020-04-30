@@ -1,4 +1,4 @@
-# Add multiple teams to an existing user
+# Add team to an existing user
 
 Powershell parameterized script to add multiple teams, in different teams or not, to an existing Checkmarx user.
 
