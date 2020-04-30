@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Powershell Script to add Team to Existing User
+    Powershell Script to add team to existing user
 .DESCRIPTION
-    Powershell Script to add Team to Existing User
+    Powershell Script to add team to existing user
 .PARAMETER Path
     The path to the .
 .PARAMETER LiteralPath
@@ -41,12 +41,23 @@ Param(
     [Parameter(
         Position = 4,
         Mandatory = $true,
-        HelpMessage = "Checkmarx User Username (eg. Domain\12345)"
-    )][string] $userUsername
+        HelpMessage = "Checkmarx User Email (eg. first.last@company.com)"
+    )][string] $userEmail
 )
 ######## Checkmarx Config ########
 Write-Host "Connecting to '${serverUrl}' with Username '${username}'"
 
+# Available Languages:
+# 1028 - Chinese_Taiwan           
+# 1033 - English                  
+# 1034 - Spanish                  
+# 1036 - French                   
+# 1041 - Japanese                 
+# 1042 - Korean                   
+# 1046 - Portuguese               
+# 1049 - Russian                  
+# 2052 - Chinese                  
+$lcid = 1033
 # Available User Types:
 # Application
 # Domain
@@ -55,15 +66,15 @@ Write-Host "Connecting to '${serverUrl}' with Username '${username}'"
 # SSO
 # LDAP
 # None
-# This will only work for Non-Application Users, since password is not being stored on Checkmarx side.
+# This will only work for Domain Users, since password is not being stored on Checkmarx side.
 # Creation of Application users will fail, because the user needs to be deleted and recreated again and we cannot recover the password
 $userType="Domain" 
 
-if($userUsername.Count -eq 0){
-    Write-Host "No User Username Provided. Please provide user email, for example: first.last@company.com"
+if($userEmail.Count -eq 0){
+    Write-Host "No User Email Provided. Please provide user email, for example: first.last@company.com"
     exit 1
 } else {
-    Write-Host "User Username: ${userUsername}"
+    Write-Host "User Email: ${userEmail}"
 }
 if($newTeamPath.Count -eq 0){
     Write-Host "No New Team Paths provided. Please provide new team paths, for example: /CxServer/SP/Company1/Team1"
@@ -134,7 +145,7 @@ function getUsers($proxy, $sessionId){
 function getUserIdByEmail($proxy, $sessionId, $username){
     $users = getUsers $proxy $sessionId
     foreach($user in $users){
-        if($user.UserName -eq $username){
+        if($user.Email -eq $username){
             return $user.ID
         }
     }
@@ -165,7 +176,7 @@ function deleteUserById($proxy, $sessionId, $userId){
 $proxy = getProxy $serverUrl
 $sessionId = login $proxy $username $password
 
-$userId = getUserIdByEmail $proxy $sessionId $userUsername
+$userId = getUserIdByEmail $proxy $sessionId $userEmail
 $user = getUser $proxy $sessionId $userId
 #Write-Host ($user | ConvertTo-Json -Depth 1)
 $proxyType = $proxy.gettype().Namespace
@@ -206,8 +217,8 @@ Write-Host "`n"
 $userDeleted = deleteUserById $proxy $sessionId $userId
 $res = $proxy.AddNewUser($sessionId, $userData, $userType)
 if($res.IsSuccesfull){
-    Write-Host "User ${userUsername} Updated with Success!"
+    Write-Host "User ${userEmail} Updated with Success!"
 } else{
     Write-Error "Failed to Add New User" $res.ErrorMessage
-    Write-Error "User with ${userUsername} might already exist"
+    Write-Error "User with ${userEmail} might already exist"
 }

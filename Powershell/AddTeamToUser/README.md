@@ -17,16 +17,16 @@ NAME
     .\AddTeamToExistingUser.ps1
     
 SYNOPSIS
-    Powershell Script to add User to Multiple Teams
+    Powershell Script to add team to existing user
     
     
 SYNTAX
     .\AddTeamToExistingUser.ps1 [-serverUrl] <String> [-username] <String> [-password] <String> 
-    [-newTeamPath] <String> [-userUsername] <String> [<CommonParameters>]
+    [-newTeamPath] <String> [-userEmail] <String> [<CommonParameters>]
     
     
 DESCRIPTION
-    Powershell Script to add User to Multiple Teams
+    Powershell Script to add team to existing user
     
 
 PARAMETERS
@@ -42,7 +42,7 @@ PARAMETERS
     -newTeamPath <String>
         Checkmarx Teams Paths - Required
         
-    -userUsername <String>
+    -userEmail <String>
         Checkmarx User email - Required
     
 REMARKS
@@ -54,7 +54,7 @@ REMARKS
 # Example:
 
 ```cmd
-.\AddTeamToExistingUser.ps1 http://localhost admin@cx ******** "/CxServer/Service Provider/Company1/Team1" "DOMAIN\Administrator"
+.\AddTeamToExistingUser.ps1 http://localhost admin@cx ******** "/CxServer/Service Provider/Company1/Team1" "first.last@company.com"
 ```
 
 # Important Note:
